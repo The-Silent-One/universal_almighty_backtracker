@@ -16,26 +16,30 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class Core extends StateBasedGame {
 
-    public Core(String gameName) {
+    public Core(String gameName) throws SlickException {
         super(gameName);
-        this.addState(new Menu(Vars.menuId));
-        this.addState(new Settings(Vars.settingsId));
-        this.addState(new Simulate(Vars.simulateId));
+        this.addState(new Menu(MainWindow.menuId));
+        this.addState(new Settings(MainWindow.settingsId));
+        this.addState(new Simulate(MainWindow.simulateId));
     }
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        this.getState(Vars.menuId).init(gc, this);
-        this.getState(Vars.settingsId).init(gc, this);
-        this.getState(Vars.simulateId).init(gc, this);
-        this.enterState(Vars.menuId);
+        this.getState(MainWindow.menuId).init(gc, this);
+        this.getState(MainWindow.settingsId).init(gc, this);
+        this.getState(MainWindow.simulateId).init(gc, this);
+        this.enterState(MainWindow.menuId);
+        gc.setAlwaysRender(true);
+        gc.setTargetFrameRate(60);
+        gc.setVSync(true);
+        
     }
 
     public static void main(String[] args) {
         AppGameContainer appgc;
         try {
-            appgc = new AppGameContainer(new Core(Vars.gameName));
-            appgc.setDisplayMode(Vars.width, Vars.height, false);
+            appgc = new AppGameContainer(new Core(MainWindow.gameName));
+            appgc.setDisplayMode(MainWindow.width, MainWindow.height, false);
             appgc.start();
         } catch (SlickException ex) {
             ex.printStackTrace();

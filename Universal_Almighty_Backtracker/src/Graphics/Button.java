@@ -39,11 +39,16 @@ public class Button {
         g.fillRoundRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height, this.cornerRadius);
 
         g.setColor(Color.white);
-        float h = Vars.font.getHeight(this.name);
-        float w = Vars.font.getWidth(this.name);
+        float h = MainWindow.font.getHeight(this.name);
+        float w = MainWindow.font.getWidth(this.name);
 
-        Vars.font.drawString(this.x - w / 2, this.y - h / 2, this.name);
+        MainWindow.font.drawString(this.x - w / 2, this.y - h / 2, this.name);
 
+    }
+
+    public boolean isOnButton(int xpos, int ypos) {
+        ypos = MainWindow.height - ypos;
+        return xpos > this.x - this.width / 2 && xpos < this.x + this.width / 2 && ypos > this.y - this.height / 2&& ypos < this.y + this.height / 2;
     }
 
 }
